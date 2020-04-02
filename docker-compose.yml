@@ -13,6 +13,9 @@ services:
       - .:/code
     ports:
       - 8000:8000
+    environment:
+      - PYTHONIOENCODING=UTF-8
+      - DATABASE_URL=postgres://postgres:tembic1-test@postgres:5432/tembici-api
 
   postgres:
     image: postgres
@@ -24,3 +27,5 @@ services:
       POSTGRES_USER: postgres
     ports:
       - 5432:5432
+    volumes:
+      - local_postgres_data:/var/lib/postgresql
