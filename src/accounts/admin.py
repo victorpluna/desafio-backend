@@ -30,6 +30,13 @@ class CustomerAdmin(BaseUserAdmin):
                 'name',
             )
         }),
+        (_('Permissions'), {
+            'fields': (
+                'is_staff',
+                'is_superuser',
+                'is_active',
+            )
+        }),
         (_('Important dates'), {
             'fields': (
                 'last_login',

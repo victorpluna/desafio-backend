@@ -19,6 +19,7 @@ schema_view = get_schema_view(
 
 api_v1_urls = [
     path('login/', obtain_jwt_token, name='login'),
+    path('trips/', include('trips.urls')),
 ]
 
 urlpatterns = [

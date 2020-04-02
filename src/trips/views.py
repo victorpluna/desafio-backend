@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework.generics import ListAPIView
+from rest_framework.pagination import PageNumberPagination
+from .serializers import TripSerializer
 
-# Create your views here.
+
+class TripListAPIView(ListAPIView):
+    serializer_class = TripSerializer
+    pagination_class = PageNumberPagination
+
+    def get_queryset(self):
+        return self.request.user.trips.all().order_by('-start_date')
