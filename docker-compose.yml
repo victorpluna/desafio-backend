@@ -1,0 +1,26 @@
+version: "3.4"
+volumes:
+  local_postgres_data: {}
+
+services:
+  local:
+    restart: always
+    build: .
+    command: ["bash", "run.sh"]
+    depends_on:
+      - postgres
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+
+  postgres:
+    image: postgres
+    networks:
+      - default
+    environment:
+      POSTGRES_PASSWORD: tembic1-test
+      POSTGRES_DB: tembici-api
+      POSTGRES_USER: postgres
+    ports:
+      - 5432:5432
